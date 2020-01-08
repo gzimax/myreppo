@@ -342,7 +342,7 @@ func Test_validateRequestPreservationType(t *testing.T) {
 			name: "None passes",
 			args: args{
 				value: "None",
-				field: "refresh_user_info_claims_interval",
+				field: "samesite_cookie_param",
 			},
 			wantWarns: nil,
 			wantErrs:  nil,
@@ -351,7 +351,7 @@ func Test_validateRequestPreservationType(t *testing.T) {
 			name: "POST passes",
 			args: args{
 				value: "POST",
-				field: "refresh_user_info_claims_interval",
+				field: "samesite_cookie_param",
 			},
 			wantWarns: nil,
 			wantErrs:  nil,
@@ -360,6 +360,67 @@ func Test_validateRequestPreservationType(t *testing.T) {
 			name: "All passes",
 			args: args{
 				value: "All",
+				field: "samesite_cookie_param",
+			},
+			wantWarns: nil,
+			wantErrs:  nil,
+		},
+		{
+			name: "junk does not pass",
+			args: args{
+				value: "other",
+				field: "samesite_cookie_param",
+			},
+			wantWarns: nil,
+			wantErrs:  []error{fmt.Errorf("%q must be either 'None', 'POST' or 'All' not %s", "refresh_user_info_claims_interval", "other")},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotWarns, gotErrs := validateRequestPreservationType(tt.args.value, tt.args.field)
+			if !reflect.DeepEqual(gotWarns, tt.wantWarns) {
+				t.Errorf("validateRequestPreservationType() gotWarns = %v, want %v", gotWarns, tt.wantWarns)
+			}
+			if !reflect.DeepEqual(gotErrs, tt.wantErrs) {
+				t.Errorf("validateRequestPreservationType() gotErrs = %v, want %v", gotErrs, tt.wantErrs)
+			}
+		})
+	}
+}
+
+func Test_validateSameSiteCookieType(t *testing.T) {
+	type args struct {
+		value interface{}
+		field string
+	}
+	tests := []struct {
+		name      string
+		args      args
+		wantWarns []string
+		wantErrs  []error
+	}{
+		{
+			name: "None passes",
+			args: args{
+				value: "None",
+				field: "refresh_user_info_claims_interval",
+			},
+			wantWarns: nil,
+			wantErrs:  nil,
+		},
+		{
+			name: "Lax passes",
+			args: args{
+				value: "Lax",
+				field: "refresh_user_info_claims_interval",
+			},
+			wantWarns: nil,
+			wantErrs:  nil,
+		},
+		{
+			name: "Disabled passes",
+			args: args{
+				value: "Disabled",
 				field: "refresh_user_info_claims_interval",
 			},
 			wantWarns: nil,
@@ -377,12 +438,12 @@ func Test_validateRequestPreservationType(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotWarns, gotErrs := validateRequestPreservationType(tt.args.value, tt.args.field)
+			gotWarns, gotErrs := validateSameSiteCookieType(tt.args.value, tt.args.field)
 			if !reflect.DeepEqual(gotWarns, tt.wantWarns) {
-				t.Errorf("validateRequestPreservationType() gotWarns = %v, want %v", gotWarns, tt.wantWarns)
+				t.Errorf("validateSameSiteCookieType() gotWarns = %v, want %v", gotWarns, tt.wantWarns)
 			}
 			if !reflect.DeepEqual(gotErrs, tt.wantErrs) {
-				t.Errorf("validateRequestPreservationType() gotErrs = %v, want %v", gotErrs, tt.wantErrs)
+				t.Errorf("validateSameSiteCookieType() gotErrs = %v, want %v", gotErrs, tt.wantErrs)
 			}
 		})
 	}

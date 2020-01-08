@@ -60,6 +60,14 @@ func validateRequestPreservationType(value interface{}, field string) (warns []s
 	return
 }
 
+func validateSameSiteCookieType(value interface{}, field string) (warns []string, errs []error) {
+	v := value.(string)
+	if v != "None" && v != "Lax" && v != "Disabled" {
+		errs = append(errs, fmt.Errorf("%q must be either 'None', 'Lax' or 'Disabled' not %s", field, v))
+	}
+	return
+}
+
 func validateWebStorageType(value interface{}, field string) (warns []string, errs []error) {
 	v := value.(string)
 	if v != "SessionStorage" && v != "LocalStorage" {
@@ -78,8 +86,8 @@ func validateListLocationValue(value interface{}, field string) (warns []string,
 
 func validateHTTPListenerName(value interface{}, field string) (warns []string, errs []error) {
 	v := value.(string)
-	if v != "ADMIN" && v != "AGENT" && v != "ENGINE" {
-		errs = append(errs, fmt.Errorf("%q must be either 'ADMIN', 'AGENT' or 'ENGINE' not %s", field, v))
+	if v != "ADMIN" && v != "AGENT" && v != "ENGINE" && v != "CONFIG QUERY" {
+		errs = append(errs, fmt.Errorf("%q must be either 'ADMIN', 'AGENT', 'CONFIG QUERY' or 'ENGINE' not %s", field, v))
 	}
 	return
 }
