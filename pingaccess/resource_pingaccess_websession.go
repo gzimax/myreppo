@@ -118,7 +118,7 @@ func resourcePingAccessWebSessionSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  480,
 		},
-		"samesite_cookie": &schema.Schema{
+		"same_site": &schema.Schema{
 			Type:         schema.TypeString,
 			Optional:     true,
 			Default:      "None",

@@ -137,7 +137,7 @@ func Test_resourcePingAccessWebSessionReadData(t *testing.T) {
 				SendRequestedUrlToProvider:    Bool(true),
 				SessionTimeoutInMinutes:       Int(0),
 				ValidateSessionIsAlive:        Bool(true),
-				SamesiteCookie:                String("true"),
+				sameSite:                      String("true"),
 			},
 		},
 		{
@@ -165,7 +165,7 @@ func Test_resourcePingAccessWebSessionReadData(t *testing.T) {
 				SendRequestedUrlToProvider:    Bool(false),
 				SessionTimeoutInMinutes:       Int(1),
 				ValidateSessionIsAlive:        Bool(false),
-				SamesiteCookie:                String(""),
+				sameSite:                      String(""),
 			},
 		},
 	}
