@@ -68,6 +68,14 @@ func validateWebStorageType(value interface{}, field string) (warns []string, er
 	return
 }
 
+func validateSameSite(value interface{}, field string) (warns []string, errs []error) {
+	v := value.(string)
+	if v != "None" && v != "Disabled" && v != "Lax" {
+		errs = append(errs, fmt.Errorf("%q must be either 'None', 'Disabled' or 'Lax' not %s", field, v))
+	}
+	return
+}
+
 func validateListLocationValue(value interface{}, field string) (warns []string, errs []error) {
 	v := value.(string)
 	if v != "FIRST" && v != "LAST" {

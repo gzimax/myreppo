@@ -129,6 +129,12 @@ func resourcePingAccessWebSessionSchema() map[string]*schema.Schema {
 			Default:      "SessionStorage",
 			ValidateFunc: validateWebStorageType,
 		},
+		"same_site": &schema.Schema{
+			Type:         schema.TypeString,
+			Optional:     true,
+			Default:      "None",
+			ValidateFunc: validateSameSite,
+		},
 	}
 }
 
@@ -191,6 +197,7 @@ func resourcePingAccessWebSessionReadResult(d *schema.ResourceData, input *pa.We
 	setResourceDataString(d, "audience", input.Audience)
 	setResourceDataString(d, "name", input.Name)
 	setResourceDataString(d, "web_storage_type", input.WebStorageType)
+	setResourceDataString(d, "same_site", input.SameSite)
 	setResourceDataBool(d, "cache_user_attributes", input.CacheUserAttributes)
 	setResourceDataString(d, "cookie_domain", input.CookieDomain)
 	setResourceDataString(d, "cookie_type", input.CookieType)
@@ -300,6 +307,10 @@ func resourcePingAccessWebSessionReadData(d *schema.ResourceData) *pa.WebSession
 
 	if _, ok := d.GetOkExists("web_storage_type"); ok {
 		websession.WebStorageType = String(d.Get("web_storage_type").(string))
+	}
+
+	if _, ok := d.GetOkExists("same_site"); ok {
+		websession.SameSite = String(d.Get("same_site").(string))
 	}
 
 	return websession

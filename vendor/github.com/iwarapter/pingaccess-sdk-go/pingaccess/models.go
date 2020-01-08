@@ -50,6 +50,7 @@ type AdminWebSessionOidcConfigurationView struct {
 	SendRequestedUrlToProvider    *bool                       `json:"sendRequestedUrlToProvider,omitempty"`
 	ValidateSessionIsAlive        *bool                       `json:"validateSessionIsAlive,omitempty"`
 	WebStorageType                *string                     `json:"webStorageType,omitempty"`
+	SameSite                      *string                     `json:"sameSite,omitempty"`
 }
 
 //AgentCertificateView
@@ -1202,6 +1203,7 @@ type WebSessionView struct {
 	SessionTimeoutInMinutes       *int                        `json:"sessionTimeoutInMinutes,omitempty"`
 	ValidateSessionIsAlive        *bool                       `json:"validateSessionIsAlive,omitempty"`
 	WebStorageType                *string                     `json:"webStorageType,omitempty"`
+	SameSite                      *string                     `json:"sameSite,omitempty"`
 }
 
 //WebSessionsView
@@ -1211,6 +1213,11 @@ type WebSessionsView struct {
 
 //WebStorageTypesView
 type WebStorageTypesView struct {
+	Items []*ItemView `json:"items"`
+}
+
+//SameSiteTypesView
+type SameSiteTypesView struct {
 	Items []*ItemView `json:"items"`
 }
 

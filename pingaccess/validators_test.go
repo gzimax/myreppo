@@ -388,6 +388,67 @@ func Test_validateRequestPreservationType(t *testing.T) {
 	}
 }
 
+func Test_validateSameSite(t *testing.T) {
+	type args struct {
+		value interface{}
+		field string
+	}
+	tests := []struct {
+		name      string
+		args      args
+		wantWarns []string
+		wantErrs  []error
+	}{
+		{
+			name: "None passes",
+			args: args{
+				value: "None",
+				field: "same_site",
+			},
+			wantWarns: nil,
+			wantErrs:  nil,
+		},
+		{
+			name: "Disabled passes",
+			args: args{
+				value: "Disabled",
+				field: "same_site",
+			},
+			wantWarns: nil,
+			wantErrs:  nil,
+		},
+		{
+			name: "Lax passes",
+			args: args{
+				value: "Lax",
+				field: "same_site",
+			},
+			wantWarns: nil,
+			wantErrs:  nil,
+		},
+		{
+			name: "junk does not pass",
+			args: args{
+				value: "other",
+				field: "same_site",
+			},
+			wantWarns: nil,
+			wantErrs:  []error{fmt.Errorf("%q must be either 'None', 'Disabled' or 'Lax' not %s", "same_site", "other")},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotWarns, gotErrs := validateSameSite(tt.args.value, tt.args.field)
+			if !reflect.DeepEqual(gotWarns, tt.wantWarns) {
+				t.Errorf("validateSameSite() gotWarns = %v, want %v", gotWarns, tt.wantWarns)
+			}
+			if !reflect.DeepEqual(gotErrs, tt.wantErrs) {
+				t.Errorf("validateSameSite() gotErrs = %v, want %v", gotErrs, tt.wantErrs)
+			}
+		})
+	}
+}
+
 func Test_validateWebStorageType(t *testing.T) {
 	type args struct {
 		value interface{}
