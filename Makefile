@@ -1,5 +1,5 @@
 # Makefile
-VERSION ?= 0.0.0
+VERSION ?= 0.3.1
 NAME=terraform-provider-pingaccess_v${VERSION}
 
 pa-init:
