@@ -118,12 +118,6 @@ func resourcePingAccessWebSessionSchema() map[string]*schema.Schema {
 			Optional: true,
 			Default:  480,
 		},
-		"same_site": &schema.Schema{
-			Type:         schema.TypeString,
-			Optional:     true,
-			Default:      "None",
-			ValidateFunc: validateSameSiteCookieType,
-		},
 		"validate_session_is_alive": &schema.Schema{
 			Type:     schema.TypeBool,
 			Optional: true,
