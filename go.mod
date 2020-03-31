@@ -1,4 +1,4 @@
-module github.com/iwarapter/terraform-provider-pingaccess
+module github.com/gzimax/terraform-provider-pingaccess
 
 go 1.12
 
@@ -17,6 +17,7 @@ require (
 	github.com/golang/mock v1.3.1 // indirect
 	github.com/google/certificate-transparency-go v1.0.21 // indirect
 	github.com/google/go-cmp v0.3.0
+	github.com/gzimax/pingaccess-sdk-go v0.0.0-20200331120426-9040d3ac5925
 	github.com/hashicorp/go-getter v1.3.1-0.20190627223108-da0323b9545e // indirect
 	github.com/hashicorp/go-plugin v1.0.1-0.20190610192547-a1bc61569a26 // indirect
 	github.com/hashicorp/hcl2 v0.0.0-20190725010614-0c3fe388e450 // indirect

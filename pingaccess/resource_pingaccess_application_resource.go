@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/gzimax/pingaccess-sdk-go/pingaccess"
+	pa "github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/iwarapter/pingaccess-sdk-go/pingaccess"
-	pa "github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 )
 
 func resourcePingAccessApplicationResource() *schema.Resource {
@@ -74,14 +74,14 @@ func resourcePingAccessApplicationResourceSchema() map[string]*schema.Schema {
 				},
 			},
 		},
-		pathPrefixes: &schema.Schema{
-			Type:       schema.TypeSet,
-			Optional:   true,
-			Deprecated: "To be removed in a future release; please use 'path_patterns' instead",
-			Elem: &schema.Schema{
-				Type: schema.TypeString,
-			},
-		},
+		//		pathPrefixes: &schema.Schema{
+		//			Type:       schema.TypeSet,
+		//			Optional:   true,
+		//			Deprecated: "To be removed in a future release; please use 'path_patterns' instead",
+		//			Elem: &schema.Schema{
+		//				Type: schema.TypeString,
+		//			},
+		//		},
 		"policy": applicationPolicySchema(),
 		rootResource: &schema.Schema{
 			Type:     schema.TypeBool,
@@ -229,11 +229,11 @@ func resourcePingAccessApplicationResourceReadResult(d *schema.ResourceData, rv 
 	}
 	// name := d.Get("name").(string)
 	// path_prefixes := d.Get("path_prefixes").([]*string)
-	if rv.PathPrefixes != nil {
-		if err := d.Set(pathPrefixes, *rv.PathPrefixes); err != nil {
-			return err
-		}
-	}
+	//if rv.PathPrefixes != nil {
+	//	if err := d.Set(pathPrefixes, *rv.PathPrefixes); err != nil {
+	//		return err
+	//}
+	//}
 
 	// if err := d.Set("path_patterns", *rv.PathPrefixes); err != nil {
 	// 	return err
@@ -290,10 +290,10 @@ func resourcePingAccessApplicationResourceReadData(d *schema.ResourceData) *pa.R
 	if _, ok := d.GetOkExists("unprotected"); ok {
 		resource.Unprotected = Bool(d.Get("unprotected").(bool))
 	}
-	if _, ok := d.GetOkExists("path_prefixes"); ok {
-		pathPrefixes := expandStringList(d.Get("path_prefixes").(*schema.Set).List())
-		resource.PathPrefixes = &pathPrefixes
-	}
+	//	if _, ok := d.GetOkExists("path_prefixes"); ok {
+	//		pathPrefixes := expandStringList(d.Get("path_prefixes").(*schema.Set).List())
+	//		resource.PathPrefixes = &pathPrefixes
+	//	}
 
 	if _, ok := d.GetOk("path_patterns"); ok {
 		pathPatterns := d.Get("path_patterns").(*schema.Set).List()

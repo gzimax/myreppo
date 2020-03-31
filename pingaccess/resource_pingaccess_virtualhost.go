@@ -3,8 +3,8 @@ package pingaccess
 import (
 	"fmt"
 
+	"github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 )
 
 func resourcePingAccessVirtualHost() *schema.Resource {

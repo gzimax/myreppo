@@ -8,8 +8,8 @@ import (
 
 	"github.com/tidwall/gjson"
 
+	pa "github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/schema"
-	pa "github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 	"github.com/tidwall/sjson"
 )
 

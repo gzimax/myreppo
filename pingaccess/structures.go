@@ -7,9 +7,9 @@ import (
 	"log"
 	"strconv"
 
+	pa "github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/schema"
-	pa "github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 )
 
 func setOfString() *schema.Schema {

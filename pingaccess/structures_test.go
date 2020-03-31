@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
+	pa "github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/flatmap"
-	pa "github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 )
 
 func testHiddenFieldView() map[string]string {

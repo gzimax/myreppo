@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
+	pa "github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
-	pa "github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 	"github.com/ory/dockertest"
 	"github.com/terraform-providers/terraform-provider-template/template"
 )

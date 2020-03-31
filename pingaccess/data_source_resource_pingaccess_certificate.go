@@ -3,8 +3,8 @@ package pingaccess
 import (
 	"fmt"
 
+	pa "github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/schema"
-	pa "github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 )
 
 func dataSourcePingAccessCertificate() *schema.Resource {

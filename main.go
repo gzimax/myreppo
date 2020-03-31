@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/gzimax/terraform-provider-pingaccess/pingaccess"
 	"github.com/hashicorp/terraform/plugin"
-	"github.com/iwarapter/terraform-provider-pingaccess/pingaccess"
 )
 
 func main() {

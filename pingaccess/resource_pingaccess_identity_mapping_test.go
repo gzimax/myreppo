@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/gzimax/pingaccess-sdk-go/pingaccess"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/iwarapter/pingaccess-sdk-go/pingaccess"
 )
 
 func TestAccPingAccessIdentityMapping(t *testing.T) {
